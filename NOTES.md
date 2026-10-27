@@ -44,8 +44,9 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   and only differed by port. Port scan isn't in 2018, so it only matters for A.
 - Surprise 2: in 2018, FTP-BruteForce goes from 193,360 rows to 53 and
   DoS SlowHTTPTest from 139,890 to 55. Those flows are almost all identical,
-  which fits the reports that these two attacks mostly failed and produced
-  near-empty connections. So 2018 "brute force" is essentially SSH only.
+  which fits the NetSentry paper (Liu et al., arXiv 2202.09873), which says
+  these two attacks were captured with only SYN and RST packets. So 2018
+  "brute force" is essentially SSH only.
 - 2017 web attack labels contain U+FFFD where the en dash was; I replace any
   non-ASCII run in a label with "-".
 - Families: DoS, DDoS, brute force (FTP/SSH-Patator vs FTP/SSH-BruteForce),
@@ -88,7 +89,8 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   are deterministic with fixed seeds, so their numbers should repeat exactly
   in the second run; I'll check that.
 - Not a dead end but worth noting: 2018 Infiltration gets ~4% recall even
-  within 2018, for all three models. That matches Liu et al. (2022): the label
-  was assigned by time window and covers mostly ordinary traffic from the
-  infected hosts. 2017 Bot sits around 60% recall in-domain, which matches the
-  labelling problems Engelen et al. (2021) describe.
+  within 2018, for all three models, so as labelled it is barely separable
+  from benign. Liu et al. (2022) report labelling errors in 2018; I only read
+  the abstract, so I can't say whether they single out infiltration. 2017 Bot
+  sits around 60% recall in-domain, in line with the labelling problems
+  Engelen et al. (2021) describe for 2017.
