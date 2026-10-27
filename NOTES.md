@@ -62,3 +62,33 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   six bulk-rate columns) are dropped in 02, leaving 68.
 - Features are stored as float32. The dedup hash is computed on the float64
   values before the cast.
+
+## 2026-10-28 first full run, and LightGBM diverging
+
+- First full run took about two hours. The cross-dataset drop was large for
+  every model: on B (train 2017, test 2018) macro F1 fell to 0.52 to 0.60 and
+  attack recall to 6 to 23%, against 0.94 to 0.998 F1 on the 2017 split.
+- LightGBM looked wrong on A: mean F1 0.94 with a 0.05 std across seeds, and
+  AUROC 0.93 +/- 0.07, while RF and the MLP were at 0.996+ with tiny std. A
+  boosted model scoring lower AUROC than RF on in-domain data is odd.
+- Checked on the 2017 training split only (seed 1): training AUROC is 1.0 at
+  50 and 100 rounds, then 0.995 at 200 and 0.836 at 300, with raw scores out
+  to about +/-1e7. So boosting diverges on its own training data; this is not
+  overfitting or shift. My guess at the cause: 2017 has rows with identical
+  features and different labels (the dedup is on features plus label, so these
+  survive). A confidently wrong row has gradient ~1 and hessian ~0, and the
+  Newton step for its leaf blows up.
+- Fix: max_delta_step=1.0, which caps each leaf's output. I chose it on
+  training data only: with it, seeds 1 and 2 reach training AUROC 1.0 and raw
+  scores stay within about +/-22. I did not try other values and did not look
+  at any test numbers for it.
+- I am aware this is a re-run after seeing results. The reason is a training
+  failure visible without any test data, not a test number I didn't like. The
+  first run is kept in results/first_run_lgbm_diverged_runs.csv. RF and MLP
+  are deterministic with fixed seeds, so their numbers should repeat exactly
+  in the second run; I'll check that.
+- Not a dead end but worth noting: 2018 Infiltration gets ~4% recall even
+  within 2018, for all three models. That matches Liu et al. (2022): the label
+  was assigned by time window and covers mostly ordinary traffic from the
+  infected hosts. 2017 Bot sits around 60% recall in-domain, which matches the
+  labelling problems Engelen et al. (2021) describe.
