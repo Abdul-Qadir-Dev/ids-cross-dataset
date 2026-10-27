@@ -224,8 +224,9 @@ def main():
     sample_counts.rename_axis("label").to_csv(SAMPLE_COUNTS_CSV)
     print(sample_counts.to_string())
 
-    pd.DataFrame(rows).to_csv(COUNTS_CSV, index=False)
-    print(pd.DataFrame(rows).to_string(index=False))
+    counts = pd.DataFrame(rows).convert_dtypes()
+    counts.to_csv(COUNTS_CSV, index=False)
+    print(counts.to_string(index=False))
 
 
 if __name__ == "__main__":

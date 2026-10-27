@@ -1,0 +1,16 @@
+label,cleaned,sampled,family
+Benign,9525202,1043518,Benign
+Bot,144535,15834,Bot
+Brute Force -Web,555,555,Web attack
+Brute Force -XSS,228,228,Web attack
+DDOS attack-HOIC,198861,21786,DDoS
+DDOS attack-LOIC-UDP,1730,1730,DDoS
+DDoS attacks-LOIC-HTTP,575364,63033,DDoS
+DoS attacks-GoldenEye,41406,4536,DoS
+DoS attacks-Hulk,145199,15907,DoS
+DoS attacks-SlowHTTPTest,55,55,DoS
+DoS attacks-Slowloris,9908,9908,DoS
+FTP-BruteForce,53,53,Brute force
+Infilteration,113819,12469,Infiltration
+SQL Injection,84,84,Web attack
+SSH-Bruteforce,94048,10303,Brute force

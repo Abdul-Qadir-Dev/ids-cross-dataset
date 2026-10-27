@@ -1,0 +1,4 @@
+dataset,raw,after_drop_header_rows,after_drop_nan_inf,after_dedup
+CIC-IDS2017,2830743,2830743,2827876,2233164
+CSE-CIC-IDS2018,16233002,16232943,16137183,10851047
+CSE-CIC-IDS2018 sample,,,,1199999
