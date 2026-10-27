@@ -44,7 +44,7 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   and only differed by port. Port scan isn't in 2018, so it only matters for A.
 - Surprise 2: in 2018, FTP-BruteForce goes from 193,360 rows to 53 and
   DoS SlowHTTPTest from 139,890 to 55. Those flows are almost all identical,
-  which fits the NetSentry paper (Liu et al., arXiv 2202.09873), which says
+  which fits Liu and Patras (2022, NetSentry, arXiv 2202.09873), who say
   these two attacks were captured with only SYN and RST packets. So 2018
   "brute force" is essentially SSH only.
 - 2017 web attack labels contain U+FFFD where the en dash was; I replace any
