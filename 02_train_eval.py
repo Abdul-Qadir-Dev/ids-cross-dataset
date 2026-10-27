@@ -39,8 +39,12 @@ def make_model(name: str, seed: int):
     if name == "RF":
         return RandomForestClassifier(n_estimators=100, min_samples_leaf=2, n_jobs=-1, random_state=seed)
     if name == "LightGBM":
-        return LGBMClassifier(n_estimators=300, learning_rate=0.1, num_leaves=63, n_jobs=6,
-                              random_state=seed, deterministic=True, force_row_wise=True, verbose=-1)
+        # Without a cap on leaf outputs, boosting diverged on 2017 (raw scores near 1e7, training
+        # AUROC falling from 1.0 to 0.84). Rows with identical features but different labels give
+        # gradient ~1 with hessian ~0, so the Newton step explodes. See NOTES.md, 2026-10-28.
+        return LGBMClassifier(n_estimators=300, learning_rate=0.1, num_leaves=63, max_delta_step=1.0,
+                              n_jobs=6, random_state=seed, deterministic=True, force_row_wise=True,
+                              verbose=-1)
     if name == "MLP":
         # flow features span many orders of magnitude, so log-scale before standardising
         mlp = MLPClassifier(hidden_layer_sizes=(64, 32), batch_size=1024, max_iter=30,
