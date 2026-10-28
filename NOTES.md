@@ -94,3 +94,37 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   the abstract, so I can't say whether they single out infiltration. 2017 Bot
   sits around 60% recall in-domain, in line with the labelling problems
   Engelen et al. (2021) describe for 2017.
+
+## 2026-10-28 second run, with the LightGBM fix
+
+- RF and MLP came out the same as in the first run: MLP identical, RF within
+  5e-5 on every metric (probably the multithreaded averaging of tree votes
+  flipping a few rows that sit right at 0.5). So the re-run only changed
+  LightGBM, as intended.
+- LightGBM now behaves: A goes from 0.94 +/- 0.05 to 0.9986 +/- 0.0001 macro
+  F1. Its B number went down, not up: attack recall 3.9% instead of 23%. The
+  diverged model had been pushing more of everything towards "attack" (its B
+  false positive rate was 6% vs 0.05% now), so its earlier 23% was partly
+  noise, not better transfer.
+- The laptop slept overnight in the middle of this run. Two RF fits show 3,876 s
+  and 25,129 s instead of the usual ~250 s. The fit_seconds column in
+  results/runs.csv is wall-clock time, so ignore it for those two rows.
+- What surprised me most: in B the false positive rate stays tiny (0.05 to
+  0.9%). The 2017 models don't panic on 2018; they call nearly everything
+  benign, attacks included. AUROC for RF and LightGBM is still 0.77 to 0.83,
+  so some ranking survives, but the 0.5 threshold learned on 2017 lands in the
+  wrong place. I did not pick a new threshold, because the only data to pick
+  it on would be 2018 itself.
+- Bot, brute force and web attack transfer at essentially zero in both
+  directions. DoS is the only family that partly carries over (19 to 37%
+  recall in B, 33 to 52% in C). DDoS doesn't, which makes sense: 2017 DDoS is
+  LOIC only, while the 2018 sample is mostly LOIC-HTTP and HOIC.
+- C (train 2018, test 2017) is a bit better than B for the tree models (macro
+  F1 0.67 to 0.69, recall 26 to 31%), but the MLP is unstable there: false
+  positive rate 12 to 31% depending on seed.
+- Feature shift: 9 of the top 10 LightGBM features have a KS statistic of
+  0.15 to 0.34 on benign traffic alone, so even "normal" looks different a year
+  later. The clearest cases are the TCP window fields (Init_Win_bytes_forward
+  median 60 vs 8192 for benign) and backward packet lengths. On attack traffic
+  four features shift by KS 0.70 to 0.72, which is expected since the attack
+  tools themselves changed between the two years.
