@@ -1,0 +1,11 @@
+feature,ks_all,ks_benign,ks_attack,median_benign_2017,median_benign_2018
+Bwd Packet Length Std,0.2188,0.2913,0.7244,0.0,110.6646
+Bwd Packet Length Min,0.2833,0.3423,0.0305,6.0,0.0
+Bwd Packets/s,0.1808,0.2439,0.2849,24.0821,3.4642
+Init_Win_bytes_backward,0.1924,0.2465,0.698,-1.0,149.0
+Average Packet Size,0.1706,0.1522,0.7214,84.5,96.0
+Fwd Header Length,0.2166,0.2443,0.5326,64.0,92.0
+Init_Win_bytes_forward,0.2949,0.2647,0.5153,60.0,8192.0
+Total Fwd Packets,0.2014,0.2872,0.5518,2.0,4.0
+FIN Flag Count,0.0314,0.0062,0.1736,0.0,0.0
+Fwd Packet Length Max,0.219,0.2764,0.2949,44.0,140.0
