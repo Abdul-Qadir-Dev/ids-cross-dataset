@@ -1,0 +1,73 @@
+experiment,model,family,recall_mean,recall_std,n
+A: 2017 random split,LightGBM,Bot,0.6562,0.0391,288
+A: 2017 random split,LightGBM,Brute force,0.9982,0.0003,1830
+A: 2017 random split,LightGBM,DDoS,0.9998,0.0001,25603
+A: 2017 random split,LightGBM,DoS,0.9994,0.0003,38749
+A: 2017 random split,LightGBM,Infiltration,0.6667,0.0825,7
+A: 2017 random split,LightGBM,Web attack,0.986,0.0023,428
+A: 2017 random split,MLP,Bot,0.5984,0.1596,288
+A: 2017 random split,MLP,Brute force,0.9694,0.0049,1830
+A: 2017 random split,MLP,DDoS,0.999,0.0003,25603
+A: 2017 random split,MLP,DoS,0.9921,0.0001,38749
+A: 2017 random split,MLP,Infiltration,0.0952,0.0825,7
+A: 2017 random split,MLP,Web attack,0.9182,0.0102,428
+A: 2017 random split,RF,Bot,0.6238,0.0053,288
+A: 2017 random split,RF,Brute force,0.99,0.0011,1830
+A: 2017 random split,RF,DDoS,0.9996,0.0002,25603
+A: 2017 random split,RF,DoS,0.9959,0.0003,38749
+A: 2017 random split,RF,Infiltration,0.6667,0.0825,7
+A: 2017 random split,RF,Web attack,0.954,0.0129,428
+"B: train 2017, test 2018",LightGBM,Bot,0.0,0.0,15834
+"B: train 2017, test 2018",LightGBM,Brute force,0.0,0.0,10356
+"B: train 2017, test 2018",LightGBM,DDoS,0.0035,0.0036,86549
+"B: train 2017, test 2018",LightGBM,DoS,0.1907,0.0092,30406
+"B: train 2017, test 2018",LightGBM,Infiltration,0.0001,0.0,12469
+"B: train 2017, test 2018",LightGBM,Web attack,0.0031,0.0013,867
+"B: train 2017, test 2018",MLP,Bot,0.0,0.0,15834
+"B: train 2017, test 2018",MLP,Brute force,0.0015,0.0026,10356
+"B: train 2017, test 2018",MLP,DDoS,0.0128,0.0116,86549
+"B: train 2017, test 2018",MLP,DoS,0.3708,0.0148,30406
+"B: train 2017, test 2018",MLP,Infiltration,0.0097,0.0055,12469
+"B: train 2017, test 2018",MLP,Web attack,0.0,0.0,867
+"B: train 2017, test 2018",RF,Bot,0.0,0.0,15834
+"B: train 2017, test 2018",RF,Brute force,0.0002,0.0001,10356
+"B: train 2017, test 2018",RF,DDoS,0.0036,0.0031,86549
+"B: train 2017, test 2018",RF,DoS,0.2825,0.0003,30406
+"B: train 2017, test 2018",RF,Infiltration,0.0001,0.0,12469
+"B: train 2017, test 2018",RF,Web attack,0.0012,0.002,867
+"C: train 2018, test 2017",LightGBM,Bot,0.0,0.0,1437
+"C: train 2018, test 2017",LightGBM,Brute force,0.0016,0.0019,9150
+"C: train 2018, test 2017",LightGBM,DDoS,0.1817,0.0459,128014
+"C: train 2018, test 2017",LightGBM,DoS,0.3319,0.0684,193745
+"C: train 2018, test 2017",LightGBM,Infiltration,0.0185,0.0321,36
+"C: train 2018, test 2017",LightGBM,Web attack,0.0177,0.0124,2143
+"C: train 2018, test 2017",MLP,Bot,0.0016,0.0018,1437
+"C: train 2018, test 2017",MLP,Brute force,0.0048,0.0015,9150
+"C: train 2018, test 2017",MLP,DDoS,0.0884,0.0835,128014
+"C: train 2018, test 2017",MLP,DoS,0.4756,0.2978,193745
+"C: train 2018, test 2017",MLP,Infiltration,0.1667,0.1547,36
+"C: train 2018, test 2017",MLP,Web attack,0.0807,0.0199,2143
+"C: train 2018, test 2017",RF,Bot,0.0,0.0,1437
+"C: train 2018, test 2017",RF,Brute force,0.1385,0.1159,9150
+"C: train 2018, test 2017",RF,DDoS,0.0063,0.0059,128014
+"C: train 2018, test 2017",RF,DoS,0.524,0.153,193745
+"C: train 2018, test 2017",RF,Infiltration,0.0,0.0,36
+"C: train 2018, test 2017",RF,Web attack,0.0087,0.001,2143
+Ref: 2018 random split,LightGBM,Bot,0.9936,0.0005,3167
+Ref: 2018 random split,LightGBM,Brute force,0.9997,0.0003,2071
+Ref: 2018 random split,LightGBM,DDoS,0.9996,0.0001,17310
+Ref: 2018 random split,LightGBM,DoS,0.9984,0.0004,6081
+Ref: 2018 random split,LightGBM,Infiltration,0.0374,0.003,2494
+Ref: 2018 random split,LightGBM,Web attack,0.7958,0.0348,173
+Ref: 2018 random split,MLP,Bot,0.9862,0.0005,3167
+Ref: 2018 random split,MLP,Brute force,0.9966,0.0008,2071
+Ref: 2018 random split,MLP,DDoS,0.9931,0.0002,17310
+Ref: 2018 random split,MLP,DoS,0.9979,0.0014,6081
+Ref: 2018 random split,MLP,Infiltration,0.0315,0.014,2494
+Ref: 2018 random split,MLP,Web attack,0.4451,0.0252,173
+Ref: 2018 random split,RF,Bot,0.9919,0.0009,3167
+Ref: 2018 random split,RF,Brute force,0.9989,0.0007,2071
+Ref: 2018 random split,RF,DDoS,0.997,0.0009,17310
+Ref: 2018 random split,RF,DoS,0.9995,0.0004,6081
+Ref: 2018 random split,RF,Infiltration,0.041,0.0036,2494
+Ref: 2018 random split,RF,Web attack,0.6994,0.0405,173
