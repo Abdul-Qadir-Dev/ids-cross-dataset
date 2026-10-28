@@ -117,8 +117,10 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   it on would be 2018 itself.
 - Bot, brute force and web attack transfer at essentially zero in both
   directions. DoS is the only family that partly carries over (19 to 37%
-  recall in B, 33 to 52% in C). DDoS doesn't, which makes sense: 2017 DDoS is
-  LOIC only, while the 2018 sample is mostly LOIC-HTTP and HOIC.
+  recall in B, 33 to 52% in C). DDoS doesn't, which I didn't expect: 2017 DDoS
+  is LOIC, and 2018 has LOIC-HTTP too (63k of the 87k sampled DDoS rows). So
+  the tool alone doesn't explain it; my guess is the different network setup
+  (AWS in 2018), but I haven't checked.
 - C (train 2018, test 2017) is a bit better than B for the tree models (macro
   F1 0.67 to 0.69, recall 26 to 31%), but the MLP is unstable there: false
   positive rate 12 to 31% depending on seed.
@@ -126,5 +128,5 @@ Row counts per cleaning step (also in results/prep_counts.csv):
   0.15 to 0.34 on benign traffic alone, so even "normal" looks different a year
   later. The clearest cases are the TCP window fields (Init_Win_bytes_forward
   median 60 vs 8192 for benign) and backward packet lengths. On attack traffic
-  four features shift by KS 0.70 to 0.72, which is expected since the attack
+  three features shift by KS 0.70 to 0.72, which is expected since the attack
   tools themselves changed between the two years.
