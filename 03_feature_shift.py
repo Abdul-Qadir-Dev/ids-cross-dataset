@@ -50,6 +50,8 @@ def plot_shift(df17, df18, shift: pd.DataFrame):
                 ax.plot(x, y, style, color=color, lw=1.6,
                         label=f"{year} {'benign' if cls == 0 else 'attack'}")
         ax.set_xscale("symlog", linthresh=1)
+        # 35 rows of 2017 have Fwd Header Length down to -3e10 (a CICFlowMeter bug); cut them off
+        ax.set_xlim(left=-1)
         ax.set_title(f"{row.feature}\nKS benign {row.ks_benign:.2f}, attack {row.ks_attack:.2f}",
                      fontsize=9, color=INK)
         ax.tick_params(labelsize=8, colors=INK)
@@ -58,10 +60,11 @@ def plot_shift(df17, df18, shift: pd.DataFrame):
             ax.spines[side].set_visible(False)
     for ax in axes[:, 0]:
         ax.set_ylabel("ECDF", color=INK)
-    axes.flat[0].legend(fontsize=8, frameon=False, loc="lower right")
-    fig.suptitle("Top 10 LightGBM features (trained on 2017): distribution in 2017 vs 2018, symlog x axis",
-                 color=INK)
-    fig.tight_layout()
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, frameon=False, fontsize=9)
+    fig.suptitle("Top 10 LightGBM features (trained on 2017): 2017 vs 2018, symlog x axis from -1 "
+                 "(35 negative 2017 header lengths off the left edge)", color=INK)
+    fig.tight_layout(rect=(0, 0.05, 1, 1))
     fig.savefig(FIGURE, dpi=130)
 
 
